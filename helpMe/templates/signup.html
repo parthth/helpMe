@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>helpMe</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% load static %}
+
+
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-theme.css' %}" rel="stylesheet">
+
+    <!-- simple style -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top f">
+    <div class="container">
+        <div class="navbar-header">
+
+            <a class="navbar-brand " href="{% url 'landing_page'%}" style="font-size:40px">helpMe</a>
+        </div>
+    </div>
+</div>
+<!--/.nav-collapse -->
+
+
+<div id="header">
+    <div class="container ">
+        {% if messages %}
+                <li class="col-md-12 b" style="margin-top:200px; margin-left:300px; height:100%; width:50%;"
+                     align="center">
+                    <ul class="messages">
+                        {% for message in messages %}
+
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                        <div class="col-xs-12 col-sm-12 col-md-12" style="color:white">
+                            <a href="{% url 'login' %}" style="color:#01DFD7">Please Login</a>
+                        </div>
+                    </ul>
+                </div>
+{% else %}
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 m">
+
+
+
+                <form role="form " method="post" action="">
+                    {% csrf_token %}
+                    <h2>
+                        <center><span class="glyphicon glyphicon-lock"></span> Please Sign Up</center>
+                    </h2>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="first_name" id="first_name" maxlength="=120" required
+                                       class="form-control input-lg" placeholder="First Name" tabindex="1">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="last_name" id="last_name" maxlength="=120" required
+                                       class="form-control input-lg" placeholder="Last Name" tabindex="2">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" name="email" maxlength="254" required id="email"
+                               class="form-control input-lg" placeholder="Email Address" tabindex="4">
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="password" name="password" required id="password"
+                                       class="form-control input-lg" placeholder="Password" tabindex="5">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="password" name="confirm_password" id="password_confirmation" required
+                                       class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+                            </div>
+                        </div>
+                    </div>
+                    {% if form.errors %}
+
+                    {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <center>
+
+                        <div class="row">
+                            <input type="submit" class="btn" style="background-color:#9c9f5c; color:#fff" value="Submit">
+                        </div>
+
+                        <div class="row" style="color:white">
+                            <div class="col-xs-12 col-sm-12 col-md-12" style="color:white">
+                                <a href="{% url 'login' %}" style="color:white"> Already have an Account?</a>
+                            </div>
+                        </div>
+                    </center>
+                </form>
+                {% endif %}
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
+
+</html>

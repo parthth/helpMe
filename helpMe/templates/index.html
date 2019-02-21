@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+
+  
+
+<html lang="en">
+
+<head>
+    <title>HelpMe</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+  
+{% load static %}
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-theme.css' %}" type="text/css" rel="stylesheet">
+
+    <!-- simple style -->
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+
+<div id="header" style="background-color: rgba(0,0,0,0.5);">
+    <div class="container" align="center">
+        <div class="row" style="margin-top:15px">
+
+            <div class="animated swing delay-2s" >
+                <h1 >Help Me!!</h1>
+            </div>
+
+        </div>
+        <div style="color:#9C9F5C; font-size:30px; font-family:cursive; border-color:#fff; margin-top:80px">
+            
+              <!--  people get help here.<br/><br>
+                &nbsp;&nbsp;&nbsp; Get lot of skills to explore,<br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Experts help whenever you need.<br><br><br>-->
+                
+                <form class="form-inline signup" role="form" >
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3" >
+
+                        <a class="btn" style="color:#fff; box-shadow:2px 2px #fff; background-color:#9c9f5c; height:50px; width:200px;font-size: 20px; border-color:#fff; border-radius:50px;" href="{% url 'login' %}">Log In</a></div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3">
+                        <a class="btn" style="color:#fff; box-shadow:2px 2px #fff; background-color:#9c9f5c; height:50px; width:200px;font-size: 20px; border-color:#fff; border-radius:50px;" href="{% url 'registration_page' %}" role="button">Sign Up</a></div>
+                </form>
+
+
+        </div>
+    </div> 
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
+
+</html>

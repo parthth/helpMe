@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>helpMe</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+{% load static %}
+  
+
+ <!-- Bootstrap -->
+  <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap-theme.css' %}" rel="stylesheet">
+
+  <!-- simple style -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+
+<body id="header">
+
+  <!-- Fixed navbar -->
+ <div class="navbar navbar-inverse navbar-fixed-top ">
+    <div class="container">
+	
+      <div class="navbar-header f">
+	    {% if user.is_authenticated %}
+       <a class="navbar-brand " href="{% url 'home' pk=auth_user.id %}" style="font-size:40px">helpMe</a>
+          {% else %}
+          <a class="navbar-brand " href="{% url 'landing_page' %}" style="font-size:40px">helpMe</a>
+          {% endif %}
+      </div>
+	
+	
+	 <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class="navbar-brand " href="{% url 'search' %}"><span class="glyphicon glyphicon-search"></span> Search</a></li>
+		  <li><a class="navbar-brand " href="{% url 'contactus' %}"><span class="glyphicon glyphicon-user"></span> Contact Us</a></li>
+		  <li><a class="navbar-brand "  href="{% url 'aboutus' %}"> <span class="glyphicon glyphicon-font"></span> About Us</a></li>
+		  <li>&nbsp;&nbsp;</li>
+		  
+		 <li class="dropdown">
+          <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown"><span class="glyphicon glyphicon-user pull-right"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'home' pk=auth_user.id %}">View Profile <span class="glyphicon glyphicon-eye-open pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'logout' %}">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+          </ul>
+        </li>
+		  
+        </ul>
+      </div>
+
+	  
+      </div></div>
+      <!--/.nav-collapse -->
+ 
+
+  
+  <div class="container" style="margin-top:100px;margin-bottom:100px">
+
+<div class="row " style="box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);">
+   
+	
+        
+        
+
+
+ 
+      <div class="col-md-1"></div>
+           
+			<div class="col-md-10 " style="background-color:#424242; opacity:0.8; margin-top:50px; border-radius:15px;box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);">
+                     <div class="col-sm-4" align="center" style="padding:20px 20px 20px 20px">
+                      <img alt="User Pic" src="{{user_profile.profile_pic}}" id="profile-image1" class="img-circle img-responsive">
+          
+                
+              
+              <br>
+    
+              <!-- /input-group -->
+            </div>
+			
+            <div class="col-sm-8 get" style=" padding:20px 20px 20px 20px;color:#fff">
+            <div class="col-sm-3" ><span class="glyphicon glyphicon-user"></span> Full Name</div><div class="col-sm-9" >: {{user.get_full_username}}</div>
+			<div class="col-sm-3" > <i class="fa fa-phone"></i> Phone No</div><div class="col-sm-9" >: {{user_profile.phone_number}}</div>
+             <div class="col-sm-3"><i class="fas fa-envelope"></i> Email Id</div><div class="col-sm-9">: {{user.email}}</div>
+			<div class="col-sm-3"><span class="glyphicon glyphicon-home"></span> Address</div><div class="col-sm-9" >: {{user_profile.permanent_address}}</div>
+			<!--<div class="col-sm-3"><i class="fas fa-map-marker-alt"></i> Postal Code</div><div  class="col-sm-9">: N9B 2L1</div>			-->
+		   
+             			
+            </div>
+            <div class="clearfix"></div>
+           
+            </div>
+			<div class="col-md-1"></div>
+    
+              
+			  
+			  <div class="form-group">
+  
+  <!--<div align="center">-->
+  <!--<a href="ProfileCreation.html" class="btn btn-primary" style="margin-top:50px">Edit profile</a>-->
+  
+    
+  </div>
+
+
+			  
+			  
+
+
+<div class="col-md-12 " style="margin-bottom:50px">
+<div class="col-md-1"></div>
+<div class="col-md-4" align="center" style="background-color:#424242; opacity:0.8; box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);color:fff;margin-top:20px; padding:20px 20px 20px 20px; border-color:#fff; border-radius:15px">
+{{user_profile.Profile_Tagline}}
+
+</div>
+<div class="col-md-2"></div>
+<div class="col-md-4" style="margin-top:20px;color:#fff; opacity:0.8; box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2); background-color:#424242; border-radius:15px">
+
+<div class="table-responsive responsiv-table">
+  <table class="table bio-table">
+      <tbody>
+     
+     <tr>    
+        <td>Birthday</td>
+        <td>: {{user_profile.date_of_birth}}</td>
+    </tr>
+    <tr>    
+        <td>Gender</td>
+        <td>: {{gender}}</td>
+    </tr>
+	
+	<tr>    
+        <td>Qualification</td>
+        <td>: {{user_profile.qualification}}</td>
+    </tr>
+    <tr>
+        <td>Occupation</td>
+        <td>: {{user_profile.occupation}}</td>
+     </tr>
+	<tr>
+        <td>Charges:</td>
+        <td>: ${{user_profile.charges}}</td>
+     </tr>
+	  <tr>  
+        <td>Skills</td>
+        <td>: {{skill_list}}</td>
+     </tr>
+
+   	   
+     
+     
+    <tr>    
+        <td>Available Service Area</td>
+        <td>: {{user_profile.Available_service_area}}</td>
+    </tr>
+    <tr>
+        <td>Languages Known</td>
+        <td>: {{list_of_languages}}</td>
+     </tr>
+	 <tr>
+        <td>Working Experience</td>
+        <td>: {{user_profile.Working_experience}} yrs</td>
+     </tr>
+	  
+    </tbody>
+  </table>
+  </div><!--table-responsive close-->
+</div><!--col-md-6 close-->
+
+<div class="col-md-1" ></div>
+
+</div>
+
+   </div>
+        </div>
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="copyright">&copy;  2018</p>
+        </div>
+        <div class="col-md-6">
+          <div class="credits">
+           
+            Designed by <a href="https://bootstrapmade.com/">helpME Team</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
+
+</html>

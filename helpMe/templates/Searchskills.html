@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>helpMe</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% load static %}
+
+
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-theme.css' %}" rel="stylesheet">
+
+    <!-- siimple style -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg=="
+          crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+
+<body id="header">
+
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top ">
+    <div class="container">
+
+        <div class="navbar-header f">
+            {% if user.is_authenticated %}
+            <a class="navbar-brand " href="{% url 'home' pk=user.id %}" style="font-size:40px">helpMe</a>
+            {% else %}
+            <a class="navbar-brand " href="{% url 'landing_page' %}" style="font-size:40px">helpMe</a>
+            {% endif %}
+        </div>
+
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="navbar-brand " href="{% url 'search' %}"><span class="glyphicon glyphicon-search"></span>
+                    Search</a></li>
+                <li><a class="navbar-brand " href="{% url 'contactus' %}"><span class="glyphicon glyphicon-user"></span>
+                    Contact Us</a></li>
+                <li><a class="navbar-brand " href="{% url 'aboutus' %}"> <span class="glyphicon glyphicon-font"></span>
+                    About Us</a></li>
+                <li>&nbsp;&nbsp;</li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown"><span
+                            class="glyphicon glyphicon-user pull-right"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'home' pk=user.id %}">View Profile <span
+                                class="glyphicon glyphicon-eye-open pull-right"></span></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="{% url 'logout' %}">Sign Out <span
+                                class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+
+
+    </div>
+</div>
+<!--/.nav-collapse -->
+
+
+<div class="container-fluid" style="margin:50px 50px 50px 50px">
+
+    <div class="col-md-3 b" style="padding:20px 50px 20px 50px">
+        <form id="search_form">
+
+
+            {% csrf_token %}
+            <div class="form-group">
+                <input id="searchLocation" name="searchcity" type="text" placeholder="Search City"
+                       class="form-control input-md">
+            </div>
+            <div class="form-group">
+                <input id="searchSkills" name="skillsearch" type="text" placeholder="Search Skills"
+                       class="form-control input-md">
+            </div>
+            <div class="clearfix"></div>
+            <div align="center">
+                <input class="btn btn-md" style="background-color:#9c9f5c; color:#fff" type="submit" value="Search"></input>
+            </div>
+
+
+        </form>
+    </div>
+
+
+    <div class="col-md-8" style="margin-left:50px">
+        <div id="search_result">
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document" style="margin-top:80px">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#1c1c1c; color:#fff">
+                    <h3 class="modal-title" id="exampleModalLongTitle" align="center">tag line uigdsjkb uhjkndmsvc
+                        uhjkdnmc </h3>
+
+
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/glm-ajax.js' %}"></script>
+
+<script type="text/javascript">
+	$(document).on('submit','#search_form',function(e){
+	e.preventDefault();//prevent the page from getting refreshed
+
+	$.ajax({
+	type:'POST',
+	url:'/helpMe/search/',
+	data:{
+	searchSkills:$('#searchSkills').val(),
+	searchLocation:$('#searchLocation').val(),
+	csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+	},
+	success:searchSuccess
+	});
+	});
+	function searchSuccess(data,textStatus,jqxHR){
+	$('#search_result').html(data)
+	}
+
+
+</script>
+
+</body>
+
+</html>

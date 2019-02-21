@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>helpMe</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% load static %}
+
+
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-theme.css' %}" rel="stylesheet">
+
+    <!-- simple style -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg=="
+          crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+
+<body id="header">
+
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top ">
+    <div class="container">
+
+        <div class="navbar-header f">
+	    {% if user.is_authenticated %}
+       <a class="navbar-brand " href="{% url 'home' pk=user.id %}" style="font-size:40px">helpMe</a>
+          {% else %}
+          <a class="navbar-brand " href="{% url 'landing_page' %}" style="font-size:40px">helpMe</a>
+          {% endif %}
+      </div>
+
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="navbar-brand " href="{% url 'search' %}"><span class="glyphicon glyphicon-search"></span>
+                    Search</a></li>
+                <li><a class="navbar-brand " href="{% url 'contactus' %}"><span class="glyphicon glyphicon-user"></span> Contact Us</a></li>
+                <li><a class="navbar-brand " href="{% url 'aboutus' %}"> <span class="glyphicon glyphicon-font"></span> About Us</a></li>
+                <li>&nbsp;&nbsp;</li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown"><span
+                            class="glyphicon glyphicon-user pull-right"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'home' pk=user.id %}">View Profile <span class="glyphicon glyphicon-eye-open pull-right"></span></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="index.html">Sign Out <span
+                                class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+
+
+    </div>
+</div>
+<!--/.nav-collapse -->
+
+
+<div class="container" style="margin-top:5px; height:700px">
+
+    <div class="row space ">
+
+
+        <div class="col-md-12 b" align="center">
+
+            <h1>Stuck Some where!
+                <h1>
+                    <h2>Kindly drop your Queries to the below mail Id
+                        <h2>
+                            <h3 style="color:#9C9F5C"><i>contact@helpMe.com</i></h3>
+                            <h2>or Contact us on</h2>
+
+                            <h3 style="color:#9C9F5C">+1-123-456-7890</h3>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="copyright">&copy; 2018</p>
+            </div>
+            <div class="col-md-6">
+                <div class="credits">
+
+                    Designed by <a href="https://bootstrapmade.com/">helpMe Team</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>helpMe</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% load static %}
+
+
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-theme.css' %}" rel="stylesheet">
+
+    <!-- simple style -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top f">
+    <div class="container">
+        <div class="navbar-header ">
+
+            <a class="navbar-brand" href="{% url 'landing_page'%}" style="font-size:40px">helpMe</a>
+        </div>
+    </div>
+</div>
+<!--/.nav-collapse -->
+
+
+<div id="header" align="center">
+    <div class="container" align="center">
+
+        <div class="row" align="center">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 m" align="center">
+                <form role="form" method="post" action="" align="center">
+                    {% csrf_token %}
+                    <h2>
+                        <center><span class="glyphicon glyphicon-lock"></span> Log IN</center>
+                    </h2>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            Please enter correct email or password
+                        </div>
+                        {% endif %}
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                             <div class="form-group">
+                                <input type="text" name="email" id="User_name" class="form-control input-lg"
+                                       placeholder="Enter Email Id" tabindex="1">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <input type="password" name="password" id="password" class="form-control input-lg"
+                                       placeholder="Password" tabindex="5">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--<div class="row">-->
+                        <!--<div class="col-xs-12 col-sm-12 col-md-12" style="color:white">-->
+                            <!--<input type="checkbox"> Remember Me-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <center>
+
+                        <div class="row">
+
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <input type="submit" class="btn" style="background-color:#9c9f5c; color:#fff" value="Submit">
+                            </div>
+                        </div>
+
+                    </center>
+                </form>
+                <!--<center>-->
+                <!--<div class="row" style="color:white;">-->
+
+                <!--<div class="col-xs-12 col-sm-12 col-md-12"style="color:white;">-->
+                <!--Don't have an account?<a href="signup.html" style="color:#55ACEE  ;padding-left:5px;font-weight:10px"> Sign Up</a>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="row" style="color:white">-->
+
+                <!--<div class="col-xs-12 col-sm-12 col-md-12"style="color:white">-->
+                <!--<a href="#" style="color:white">  Forgot your password?</a>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</center>-->
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
+
+</html>
